@@ -7,22 +7,23 @@ public class ObjektuTransformacijas : MonoBehaviour {
 
 	void Update()
 	{
-		if (objektuSkripts.pedejaisVilktais != null)
+		if (objektuSkripts.pedejaisVilktais != null)	// Pārbauda, vai ir norādīts pedejais vilktais objekts
 		{
-			if (Input.GetKey(KeyCode.Z))
+			if (Input.GetKey(KeyCode.Z))	// Pārbauda, vai ir nospiests "Z"
 			{
 				objektuSkripts.pedejaisVilktais.
-				GetComponent<RectTransform>().Rotate(0, 0, Time.deltaTime * 30f);
+				GetComponent<RectTransform>().Rotate(0, 0, Time.deltaTime * 30f);	// Rotē pedejo vilkto objektu pa pulksteņa rādītāja virzienu ar noteiktu ātrumu
 			}
 
-			if (Input.GetKey(KeyCode.X))
+			if (Input.GetKey(KeyCode.X))	// Pārbauda, vai ir nospiests "X"
 			{
 				objektuSkripts.pedejaisVilktais.
-				GetComponent<RectTransform>().Rotate(0, 0, -Time.deltaTime * 30f);
+				GetComponent<RectTransform>().Rotate(0, 0, -Time.deltaTime * 30f);	// Rotē pedejo vilkto objektu pretējā virzienā pa pulksteņa rādītāja virzienu ar noteiktu ātrumu
 			}
 
-			if (Input.GetKey(KeyCode.UpArrow))
+			if (Input.GetKey(KeyCode.UpArrow))	// Pārbauda, vai ir nospiests "↑"
 			{
+				// Palielina pedejo vilkto objektu pa Y ass virzienu, ja tā skalas y vērtība ir mazāka par 1
 				if (objektuSkripts.pedejaisVilktais.
 					GetComponent<RectTransform>().transform.localScale.y <= 1f)
 				{
@@ -35,8 +36,9 @@ public class ObjektuTransformacijas : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetKey(KeyCode.DownArrow))
+			if (Input.GetKey(KeyCode.DownArrow))	// Pārbauda, vai ir nospiests "↓"
 			{
+				// Samazina pedejo vilkto objektu pa Y ass virzienu, ja tā skalas y vērtība ir lielāka par 0.10
 				if (objektuSkripts.pedejaisVilktais.
 					GetComponent<RectTransform>().transform.localScale.y >= 0.10f)
 				{
@@ -50,8 +52,9 @@ public class ObjektuTransformacijas : MonoBehaviour {
 			}
 
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+			if (Input.GetKey(KeyCode.LeftArrow))	// Pārbauda, vai ir nospiests "←"
             {
+				// Samazina pedejo vilkto objektu pa X ass virzienu, ja tā skalas x vērtība ir lielāka par 0.10
                 if (objektuSkripts.pedejaisVilktais.
                     GetComponent<RectTransform>().transform.localScale.x >= 0.10f)
                 {
@@ -64,8 +67,9 @@ public class ObjektuTransformacijas : MonoBehaviour {
                 }
             }
 
-            if (Input.GetKey(KeyCode.RightArrow))
+			if (Input.GetKey(KeyCode.RightArrow))	// Pārbauda, vai ir nospiests "→"
             {
+				// Palielina pedejo vilkto objektu pa X ass virzienu, ja tā skalas x vērtība ir mazāka par 1
                 if (objektuSkripts.pedejaisVilktais.
                     GetComponent<RectTransform>().transform.localScale.x <= 1f)
                 {

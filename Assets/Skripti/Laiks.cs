@@ -14,7 +14,7 @@ public class Laiks : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timerStart = 0;		// Sākuma taimera vērtība ir 0
-		timer_text = getTime(false);	// Iegūstam sākotnējo laiku
+		timer_text = getTime(false);
 		textBox.GetComponent<Text>().text = timer_text;		// Iestatām teksta laukā rādāmo laiku
 	}
 		
@@ -35,34 +35,34 @@ public class Laiks : MonoBehaviour {
 		s -= m*60;
 
 		if (s < 10) {
-			c = ":0" + s;
+			c = ":0" + s;	// Ja sekundes ir mazākas par 10, pievienojam priekšā nulli
 		} else {
 			c = ":" + s;
 		}
 
 		if (m < 10) {
-			b = ":0" + m;
+			b = ":0" + m;	// Ja minūtes ir mazākas par 10, pievienojam priekšā nulli
 		} else {
 			b = ":" + m;
 		}
 
-		if (h < 10) {
+		if (h < 10) {		// Ja stundas ir mazākas par 10, pievienojam priekšā nulli
 			a = "0" + h;
 		} else {
 			a = "" + h;
 		}
 
-		timer_text = a+b+c;
+		timer_text = a+b+c;		// Iegūstam galīgo laika rādītāju tekstu
 
-		return timer_text;
+		return timer_text;		// Atgriežam laika rādītāju tekstu
 	}
 
 
 	// Update is called once per frame
 	void Update () {
-		timerStart += Time.deltaTime;
-		timer_text = getTime (false);
+		timerStart += Time.deltaTime;	// Pieliekam pagājušo laiku pie taimera
+		timer_text = getTime (false);	// Iegūstam jauno laiku
 
-		textBox.GetComponent<Text> ().text = timer_text;
+		textBox.GetComponent<Text> ().text = timer_text;	// Atjaunojam teksta laukā rādāmo laiku
 	}
 }

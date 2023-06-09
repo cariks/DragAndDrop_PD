@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems; 	//Jāieimportē, lai varētu lietot visus I interfeisus
+using UnityEngine.EventSystems; 	//Jāieimportē, lai varētu lietot visus interfeisus
 
 public class DragDropSkripts : MonoBehaviour, 
     IPointerDownHandler, IBeginDragHandler, 
-    IDragHandler, IEndDragHandler { 	//Uzglabā norādi uz Objekti skriptu
-    public Objekti objektuSkripts;		//Velkamam objektam piestiprinātā CanvasGoup komponente
-    private CanvasGroup kanvasGrupa;	//Objekta atrašanās vieta, kurš tiek pārvietots
-    private RectTransform velkObjRectTransf;
+    IDragHandler, IEndDragHandler {
+	public Objekti objektuSkripts;	//Uzglabā norādi uz Objekti skriptu
+	private CanvasGroup kanvasGrupa;	//Velkamam objektam piestiprinātā CanvasGoup komponente
+	private RectTransform velkObjRectTransf;	//Objekta atrašanās vieta, kurš tiek pārvietots
 
     void Start()
     {
@@ -20,8 +20,8 @@ public class DragDropSkripts : MonoBehaviour,
     {
 		Debug.Log("Uzklikšķināts uz velkama objekta!");
 		objektuSkripts.pedejaisVilktais = null;		// Notiek vilktā objekta norādes atiestatīšana
-		kanvasGrupa.alpha = 0.6f;		// Iestatām vilktā objekta CanvasGroup alfa vērtību
-		kanvasGrupa.blocksRaycasts = false;		// Iestatām vilktā objekta CanvasGroup "blocksRaycasts" vērtību
+		kanvasGrupa.alpha = 0.6f;		// Iestatām vilktā objekta alfa vērtību, lai tas kļūtu caurspīdīgs
+		kanvasGrupa.blocksRaycasts = false;
     }
 
 

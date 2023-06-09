@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Objekti : MonoBehaviour {
+	// GameObject mainīgās, lai saglabātu atsauces uz objektiem ainā
 	public GameObject atkritumuMasina;
 	public GameObject atraPalidziba;
 	public GameObject autobuss;
@@ -17,7 +18,7 @@ public class Objekti : MonoBehaviour {
 	public GameObject policija;
 	public GameObject ugunsdzesejs;
 
-
+	// Vector2 mainīgās, lai saglabātu objektu sākuma pozīcijas
 	[HideInInspector]
 	public Vector2 atkrMKoord;
 	[HideInInspector]
@@ -56,7 +57,8 @@ public class Objekti : MonoBehaviour {
 	public GameObject pedejaisVilktais = null;
 
 
-	void Start() {
+	void Start() {	// Saglabā objektu sākuma pozīcijas
+		
 		atkrMKoord =
         atkritumuMasina.GetComponent<RectTransform>().localPosition;
         

@@ -5,44 +5,47 @@ using UnityEngine.EventSystems;
 
 public class NomesanasVieta : MonoBehaviour, 
 	IDropHandler{
-	private float vietasZRot, velkObjZRot, rotacijasStarpiba;
-	private Vector2 vietasIzm, velkObjIzm;
-	private float xIzmStarpiba, yIzmStarpiba;
+	private float vietasZRot, velkObjZRot, rotacijasStarpiba;	// Mainīgie rotācijas aprēķiniem
+	private Vector2 vietasIzm, velkObjIzm;		// Mainīgie izmēru aprēķiniem
+	private float xIzmStarpiba, yIzmStarpiba;		// Mainīgie izmēru starpībai
 	public Objekti objektuSkripts;
 
-	private static int parVietas = 0;
+	public static int parVietas = 0; // Pareizi piegādāto mašīnu skaits
+
 
     public void OnDrop(PointerEventData eventData)
     {
 		if (eventData.pointerDrag != null)
 		{
-			if (eventData.pointerDrag.tag.Equals(tag))
+			if (eventData.pointerDrag.tag.Equals(tag))	// Pārbauda, vai vilktā objekta tag atbilst šīs vietas tag
 			{
 				vietasZRot =
 				eventData.pointerDrag.
-				GetComponent<RectTransform>().transform.eulerAngles.z;
+					GetComponent<RectTransform>().transform.eulerAngles.z;	// Iegūst šīs vietas rotācijas leņķi
 
 				velkObjZRot =
-				GetComponent<RectTransform>().transform.eulerAngles.z;
+					GetComponent<RectTransform>().transform.eulerAngles.z;	// Iegūst šīs vietas rotācijas leņķi
 
 				rotacijasStarpiba =
-				Mathf.Abs(vietasZRot - velkObjZRot);
+					Mathf.Abs(vietasZRot - velkObjZRot);	// Aprēķina rotācijas starpību
+				
 
 				vietasIzm =
 				eventData.pointerDrag.
-				GetComponent<RectTransform>().localScale;
+					GetComponent<RectTransform>().localScale;	// Iegūst šīs vietas izmērus
 
 				velkObjIzm =
-					GetComponent<RectTransform>().localScale;
+					GetComponent<RectTransform>().localScale;	// Iegūst nomestā objekta izmērus
 
-				xIzmStarpiba = Mathf.Abs(vietasIzm.x - velkObjIzm.x);
-				yIzmStarpiba = Mathf.Abs(vietasIzm.y - velkObjIzm.y);
+				xIzmStarpiba = Mathf.Abs(vietasIzm.x - velkObjIzm.x);	// Aprēķina platuma starpību
+				yIzmStarpiba = Mathf.Abs(vietasIzm.y - velkObjIzm.y);	// Aprēķina augstuma starpību
 
 				Debug.Log("Objektu rotācijas starpība: " + rotacijasStarpiba
 					+ "\nPlatuma starpība: " + xIzmStarpiba +
 					"\nAugstuma starpība: " + yIzmStarpiba);
 
 
+				// Pārbauda, vai objekts ir nomests pareizajā vietā, salīdzinot rotāciju un izmērus
 				if ((rotacijasStarpiba <= 6 ||
 					(rotacijasStarpiba >= 354 && rotacijasStarpiba <= 360))
 					&& (xIzmStarpiba <= 0.1 && yIzmStarpiba <= 0.1))
@@ -51,6 +54,7 @@ public class NomesanasVieta : MonoBehaviour,
                     objektuSkripts.vaiIstajaVieta = true;
 
 
+					// Iestata nomestā objekta pozīciju, rotāciju un izmērus uz šīs vietas vērtībām
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
 						= GetComponent<RectTransform>().anchoredPosition;
 
@@ -61,24 +65,24 @@ public class NomesanasVieta : MonoBehaviour,
 						GetComponent<RectTransform>().localScale;
 
 
+					parVietas++;	// Palielina pareizi nomestu objektu skaitītāju
 
+					// Atskaņo skaņas atkarībā no nomestā objekta tag
 					switch (eventData.pointerDrag.tag) {
 					case "atkritumi":
 						objektuSkripts.skanasAvots.PlayOneShot (
 							objektuSkripts.skanasKoAtskanot [1]);
-						parVietas++;
+						
 							break;
 
 						case "atrie":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[2]);
-						parVietas++;
 							break;
 
 						case "buss":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[3]);
-						parVietas++;
 							break;
 
 
@@ -86,55 +90,46 @@ public class NomesanasVieta : MonoBehaviour,
 						case "traktori5":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[4]);
-						parVietas++;
 							break;
 
 						case "traktori1":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[5]);
-						parVietas++;
 							break;
 
 						case "eskavatori":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[6]);
-						parVietas++;
 							break;
 
 						case "b2s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[7]);
-						parVietas++;
 							break;
 
 						case "cementi":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[8]);
-						parVietas++;
 							break;
 
 						case "e46s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[9]);
-						parVietas++;
 							break;
 
 						case "e61s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[10]);
-						parVietas++;
 							break;
 
 						case "policisti":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[11]);
-						parVietas++;
 							break;
 
 						case "uguni":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[12]);
-						parVietas++;
 							break;
 
 
@@ -145,22 +140,22 @@ public class NomesanasVieta : MonoBehaviour,
 					}
 
 
-
+					// Pārbauda, vai visi objekti ir pareizi nomesti, ja ir, izsauc uzvara funkciju
 					if (parVietas == 12) {
 
 						Uzvara uzvParadisana = FindObjectOfType<Uzvara>();
 						uzvParadisana.endGame ();
+						parVietas = 0;
 					}
 				}
 
 
-				//Ja tagi nesakrīt, tātad nepareizajā vietā
 			} else	{
-				objektuSkripts.vaiIstajaVieta = false;
+				objektuSkripts.vaiIstajaVieta = false; 	// Iestata, ka objekts nav pareizi nomests
 				objektuSkripts.skanasAvots.PlayOneShot(
-					objektuSkripts.skanasKoAtskanot[0]);
+					objektuSkripts.skanasKoAtskanot[0]);	// Atskaņo nepareizas vietas skaņu
 
-                switch (eventData.pointerDrag.tag){
+				switch (eventData.pointerDrag.tag){		// Atgriež objektu sākotnējās koordinātēs
                     case "atkritumi":
 						objektuSkripts.atkritumuMasina.
 						GetComponent<RectTransform>().localPosition =
