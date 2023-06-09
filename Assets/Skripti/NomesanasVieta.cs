@@ -10,6 +10,8 @@ public class NomesanasVieta : MonoBehaviour,
 	private float xIzmStarpiba, yIzmStarpiba;
 	public Objekti objektuSkripts;
 
+	private static int parVietas = 0;
+
     public void OnDrop(PointerEventData eventData)
     {
 		if (eventData.pointerDrag != null)
@@ -47,6 +49,8 @@ public class NomesanasVieta : MonoBehaviour,
 				{
 					Debug.Log("Nomests pareizajā vietā!");
                     objektuSkripts.vaiIstajaVieta = true;
+
+
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
 						= GetComponent<RectTransform>().anchoredPosition;
 
@@ -56,20 +60,25 @@ public class NomesanasVieta : MonoBehaviour,
 					eventData.pointerDrag.GetComponent<RectTransform>().localScale =
 						GetComponent<RectTransform>().localScale;
 
+
+
 					switch (eventData.pointerDrag.tag) {
-						case "atkritumi":
-							objektuSkripts.skanasAvots.PlayOneShot(
-								objektuSkripts.skanasKoAtskanot[1]);
+					case "atkritumi":
+						objektuSkripts.skanasAvots.PlayOneShot (
+							objektuSkripts.skanasKoAtskanot [1]);
+						parVietas++;
 							break;
 
 						case "atrie":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[2]);
+						parVietas++;
 							break;
 
 						case "buss":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[3]);
+						parVietas++;
 							break;
 
 
@@ -77,46 +86,55 @@ public class NomesanasVieta : MonoBehaviour,
 						case "traktori5":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[4]);
+						parVietas++;
 							break;
 
 						case "traktori1":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[5]);
+						parVietas++;
 							break;
 
 						case "eskavatori":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[6]);
+						parVietas++;
 							break;
 
 						case "b2s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[7]);
+						parVietas++;
 							break;
 
 						case "cementi":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[8]);
+						parVietas++;
 							break;
 
 						case "e46s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[9]);
+						parVietas++;
 							break;
 
 						case "e61s":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[10]);
+						parVietas++;
 							break;
 
 						case "policisti":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[11]);
+						parVietas++;
 							break;
 
 						case "uguni":
 							objektuSkripts.skanasAvots.PlayOneShot(
 								objektuSkripts.skanasKoAtskanot[12]);
+						parVietas++;
 							break;
 
 
@@ -125,7 +143,16 @@ public class NomesanasVieta : MonoBehaviour,
 							Debug.Log("Tags nav definēts!");
 							break;
 					}
+
+
+
+					if (parVietas == 12) {
+
+						Uzvara uzvParadisana = FindObjectOfType<Uzvara>();
+						uzvParadisana.endGame ();
+					}
 				}
+
 
 				//Ja tagi nesakrīt, tātad nepareizajā vietā
 			} else	{

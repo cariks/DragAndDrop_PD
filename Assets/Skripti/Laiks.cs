@@ -34,14 +34,23 @@ public class Laiks : MonoBehaviour {
 
 		string a, b, c;
 
-		if (s < 10) c = ":0" + s;
-		else	      c = ":" + s;
+		if (s < 10) {
+			c = ":0" + s;
+		} else {
+			c = ":" + s;
+		}
 
-		if (m < 10) b = ":0" + m;
-		else          b = ":" + m;
+		if (m < 10) {
+			b = ":0" + m;
+		} else {
+			b = ":" + m;
+		}
 
-		if (h < 10)   a = "0" + h;
-		else          a = ""+ h;
+		if (h < 10) {
+			a = "0" + h;
+		} else {
+			a = "" + h;
+		}
 
 		t = a+b+c;
 
